@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Contador fixo no topo com barra estreita</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding-top: 60px; /* espaço para a barra fixa */
+    background: #fff;
+  }
+  .fixed-top-container {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 400px; /* largura fixa */
+    background-color: #FA6E59; /* vermelho salmão */
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    padding: 12px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    z-index: 9999;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    border-radius: 0 0 10px 10px;
+  }
+  .fixed-top-container p {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .fixed-top-container svg {
+    fill: white;
+  }
+  .countdown {
+    font-size: 28px;
+    font-weight: bold;
+    color: white;
+    min-width: 70px;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<div class="fixed-top-container">
+  <p>
+    <svg xmlns="http://www.w3.org/2000/svg" 
+         width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M12 1a11 11 0 1 0 11 11A11.013 11.013 0 0 0 12 1zm0 20a9 9 0 1 1 9-9 9.01 9.01 0 0 1-9 9zm.5-14h-1v6l5.25 3.15.5-.85-4.75-2.8z"/>
+    </svg>
+    80% desconto reservado por:
+  </p>
+  <p class="countdown" id="countdown">10:00</p>
+</div>
+
+<script>
+  let timeLeft = 600;
+  const countdownEl = document.getElementById('countdown');
+
+  function updateCountdown() {
+    const minutes = Math.floor(timeLeft / 60);
+    const seconds = timeLeft % 60;
+    countdownEl.textContent = 
+      `${minutes.toString().padStart(2,'0')}:${seconds.toString().padStart(2,'0')}`;
+    
+    if (timeLeft > 0) {
+      timeLeft--;
+    } else {
+      countdownEl.textContent = "00:00";
+      clearInterval(timer);
+    }
+  }
+
+  updateCountdown();
+  const timer = setInterval(updateCountdown, 1000);
+</script>
+
+<!-- Conteúdo extra para testar rolagem -->
+<div style="height: 1500px;"></div>
+
+</body>
+</html>
