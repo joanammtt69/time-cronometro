@@ -3,38 +3,39 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Contador fixo no topo com barra estreita</title>
+<title>Contador no topo sem posição fixa</title>
 <style>
   html, body {
     margin: 0;
     padding: 0;
     background: transparent;
-    height: 60px; /* altura fixa para a barra */
-    overflow: hidden;
-  }
-  body {
+    /* height: 60px;  REMOVIDO para permitir altura natural */
+    overflow: visible; /* para rolagem normal */
     font-family: Arial, sans-serif;
   }
   .fixed-top-container {
-    position: fixed;
-    top: 0;
+    /* position: fixed;  REMOVIDO */
+    /* top: 0; */
     left: 50%;
     transform: translateX(-50%);
-    width: 400px; /* largura fixa */
+    width: 400px;
     height: 60px;
-    background-color: #FA6E59; /* vermelho salmão */
+    background-color: #FA6E59;
     box-shadow: 0 2px 6px rgba(0,0,0,0.15);
     padding: 0 20px;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 15px;
-    z-index: 9999;
+    /* z-index: 9999;  pode remover se não for necessário */
     color: white;
     font-weight: bold;
-    font-size: 18px;
+    font-size: 16px;
     border-radius: 0 0 10px 10px;
     box-sizing: border-box;
+    margin: 0 auto; /* centraliza horizontalmente no fluxo */
+    position: relative; /* para o transform funcionar */
+    transform: translateX(-50%); /* opcional: pode remover para centralizar mais simples */
   }
   .fixed-top-container p {
     margin: 0;
